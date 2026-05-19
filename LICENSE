@@ -1,0 +1,23 @@
+OnyxThorn Browser is a hard fork of Mozilla Firefox.
+
+The original Firefox source code is licensed under the Mozilla Public License 2.0
+(MPL-2.0): https://www.mozilla.org/en-US/MPL/2.0/
+
+All modifications, patches, branding assets, the welcome flow, custom
+about:preferences pages, the chrome (userChrome.css and overlay JS), the NSIS
+installer, the FastAPI sync server, and the documentation contained in this
+repository are Copyright (c) 2025 OnyxThorn.
+
+These modifications are licensed under the Mozilla Public License 2.0
+(MPL-2.0) to preserve compatibility with the upstream Firefox tree.
+
+Trademark notice
+----------------
+"Firefox", "Mozilla", and the Firefox logo are trademarks of the
+Mozilla Foundation. OnyxThorn is NOT affiliated with, endorsed by, or
+sponsored by Mozilla. The OnyxThorn fork must not use any Mozilla
+trademarks. The Firefox name and trademarked artwork are stripped out
+of OnyxThorn builds via branding patches; only the MPL-2.0 licensed
+source code is reused.
+
+OnyxThorn logo and name are property of OnyxThorn.
