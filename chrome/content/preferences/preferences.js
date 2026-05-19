@@ -380,7 +380,7 @@ function escapeHtml(s) {
   }[c]));
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function bootPreferences() {
   setupNav();
   setupGeneral();
   setupHome();
@@ -391,4 +391,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Apply theme/accent from prefs at boot
   const mode = Bridge.getPref("onyxthorn.theme.mode", "auto");
   document.body.dataset.theme = mode;
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bootPreferences);
+} else {
+  bootPreferences();
+}
