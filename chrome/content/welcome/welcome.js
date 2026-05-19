@@ -92,7 +92,8 @@ const STRINGS = {
     "step6.signin":"Войти в OnyxThorn",
     "step6.or":    "или",
     "step6.tip.title": "Что будет синхронизироваться",
-    "step6.tip.text":  "Полная синхронизация: настройки, закладки, история, пароли (с E2E-шифрованием), открытые вкладки и резервная копия профиля. Данные уходят на твой сервер:",
+    "step6.tip.text":  "Полная синхронизация: настройки, закладки, история, пароли (с E2E-шифрованием), открытые вкладки и резервная копия профиля.",
+    "step6.tip.server-label": "Данные уходят на твой сервер:",
     "step6.tip.foot":  "Синхронизация запускается только когда ты сам нажмёшь «Синхронизировать сейчас» в настройках.",
 
     "signin.title":   "Войти в OnyxThorn",
@@ -158,7 +159,8 @@ const STRINGS = {
     "step6.signin":"Sign in to OnyxThorn",
     "step6.or":   "or",
     "step6.tip.title":"What will be synchronised",
-    "step6.tip.text": "Full sync: settings, bookmarks, history, passwords (end-to-end encrypted), open tabs and a profile backup. Data goes to your server:",
+    "step6.tip.text": "Full sync: settings, bookmarks, history, passwords (end-to-end encrypted), open tabs and a profile backup.",
+    "step6.tip.server-label": "Data goes to your server:",
     "step6.tip.foot": "Sync only fires when you press \"Sync now\" in settings.",
 
     "signin.title":"Sign in to OnyxThorn",
@@ -292,8 +294,9 @@ function init() {
   document.getElementById("next").addEventListener("click",   () => gotoStep(state.step + 1));
   document.getElementById("finish").addEventListener("click", finish);
 
-  // Sync URL in tip
-  document.getElementById("sync-server-url").textContent = Bridge.getSyncServerUrl();
+  // Sync URL in tip — guard since markup may evolve.
+  const syncUrlEl = document.getElementById("sync-server-url");
+  if (syncUrlEl) syncUrlEl.textContent = Bridge.getSyncServerUrl();
 
   // Account actions (step 6)
   document.getElementById("account-skip").addEventListener("click", () => finish({ skipSignIn: true }));
