@@ -1,0 +1,60 @@
+# HG changeset patch
+# User OnyxThorn <build@onyxthorn.example>
+# Date 1737000005 0
+#      OnyxThorn 0.1.0 - inject bridge.js into chrome://onyxthorn pages
+
+Registers a content-script that runs in every chrome://onyxthorn/content/
+page, exposing window.OnyxThornBridge with privileged Services.* access.
+
+diff --git a/browser/components/onyxthorn/content/bridge.manifest b/browser/components/onyxthorn/content/bridge.manifest
+new file mode 100644
+--- /dev/null
++++ b/browser/components/onyxthorn/content/bridge.manifest
+@@ -0,0 +1,2 @@
++# Load bridge.js into every OnyxThorn chrome page.
++content onyxthorn content/
+
+diff --git a/browser/components/onyxthorn/OnyxThornStartup.sys.mjs b/browser/components/onyxthorn/OnyxThornStartup.sys.mjs
+new file mode 100644
+--- /dev/null
++++ b/browser/components/onyxthorn/OnyxThornStartup.sys.mjs
+@@ -0,0 +1,42 @@
++// OnyxThorn startup observer: injects bridge.js into chrome://onyxthorn pages.
++
++const lazy = {};
++ChromeUtils.defineESModuleGetters(lazy, {
++  Services: "resource://gre/modules/Services.sys.mjs",
++});
++
++export const OnyxThornStartup = {
++  init() {
++    Services.obs.addObserver(this, "chrome-document-global-created");
++  },
++  observe(subject) {
++    try {
++      const win = subject;
++      if (!win.location?.href?.startsWith("chrome://onyxthorn/")) return;
++      win.eval(`Services.scriptloader.loadSubScript("chrome://onyxthorn/content/bridge.js", this);`);
++    } catch (e) {
++      console.error("OnyxThornStartup: failed to inject bridge:", e);
++    }
++  },
++};
+
+diff --git a/browser/components/BrowserGlue.sys.mjs b/browser/components/BrowserGlue.sys.mjs
+--- a/browser/components/BrowserGlue.sys.mjs
++++ b/browser/components/BrowserGlue.sys.mjs
+@@ -90,6 +90,7 @@ ChromeUtils.defineESModuleGetters(lazy, {
+   Normandy: "resource://normandy/Normandy.sys.mjs",
+   ProcessHangMonitor: "resource:///modules/ProcessHangMonitor.sys.mjs",
+   ProfileAge: "resource://gre/modules/ProfileAge.sys.mjs",
++  OnyxThornStartup: "resource:///modules/onyxthorn/OnyxThornStartup.sys.mjs",
+ });
+
+@@ -300,6 +301,7 @@ class BrowserGlue {
+   _onFirstWindowLoaded(aWindow) {
+     // … existing code …
+     this._maybeShowDefaultBookmarksToolbarBundle();
++    lazy.OnyxThornStartup.init();
+   }
+ }

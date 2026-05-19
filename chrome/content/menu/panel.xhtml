@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  OnyxThorn custom panel menu (the "three dots" / hamburger menu).
+  Overlaid into browser.xhtml via patch 0007-onyxthorn-panelmenu.patch.
+
+  Replaces the default Firefox app-menu with a single, opinionated panel that
+  contains exactly the items the user asked for:
+    Новая вкладка, Новое окно, Новое приватное окно, Закладки, История,
+    Загрузки, Пароли, Масштаб (+/-), Настройки, Выход.
+-->
+<panel xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+       xmlns:html="http://www.w3.org/1999/xhtml"
+       id="OnyxThornPanelMenu"
+       type="arrow"
+       photon="true"
+       consumeoutsideclicks="true"
+       position="bottomleft topleft"
+       role="menu"
+       class="cui-widget-panel onyxthorn-panel">
+
+  <panelmultiview id="OnyxThornPanelMenu-multiView" mainViewId="OnyxThornPanelMenu-mainView">
+    <panelview id="OnyxThornPanelMenu-mainView" class="PanelUI-subView">
+      <vbox class="panel-subview-body" flex="1">
+
+        <toolbarbutton id="OT-newtab"     class="subviewbutton"
+                       label="Новая вкладка" key="key_newNavigatorTab"
+                       oncommand="OnyxThornPanel.cmd('newtab', event);" />
+        <toolbarbutton id="OT-newwin"     class="subviewbutton"
+                       label="Новое окно" key="key_newNavigator"
+                       oncommand="OnyxThornPanel.cmd('newwin', event);" />
+        <toolbarbutton id="OT-newprivate" class="subviewbutton"
+                       label="Новое приватное окно" key="key_privatebrowsing"
+                       oncommand="OnyxThornPanel.cmd('newprivate', event);" />
+
+        <toolbarseparator class="ot-sep" />
+
+        <toolbarbutton id="OT-bookmarks"  class="subviewbutton"
+                       label="Закладки"   oncommand="OnyxThornPanel.cmd('bookmarks', event);" />
+        <toolbarbutton id="OT-history"    class="subviewbutton"
+                       label="История"    oncommand="OnyxThornPanel.cmd('history', event);" />
+        <toolbarbutton id="OT-downloads"  class="subviewbutton"
+                       label="Загрузки"   oncommand="OnyxThornPanel.cmd('downloads', event);" />
+        <toolbarbutton id="OT-passwords"  class="subviewbutton"
+                       label="Пароли"     oncommand="OnyxThornPanel.cmd('passwords', event);" />
+
+        <toolbarseparator class="ot-sep" />
+
+        <hbox id="OT-zoom-row" class="ot-zoom subviewbutton-nav" align="center">
+          <label class="ot-zoom-label" value="Масштаб" />
+          <spacer flex="1" />
+          <toolbarbutton id="OT-zoom-minus" class="ot-zoom-btn" label="−" oncommand="OnyxThornPanel.zoom('-');" />
+          <label id="OT-zoom-value" class="ot-zoom-value" value="100%" />
+          <toolbarbutton id="OT-zoom-plus"  class="ot-zoom-btn" label="+" oncommand="OnyxThornPanel.zoom('+');" />
+          <toolbarbutton id="OT-zoom-reset" class="ot-zoom-btn ot-zoom-reset" label="↺" tooltiptext="Сбросить" oncommand="OnyxThornPanel.zoom('reset');" />
+        </hbox>
+
+        <toolbarseparator class="ot-sep" />
+
+        <toolbarbutton id="OT-settings"   class="subviewbutton"
+                       label="Настройки"  oncommand="OnyxThornPanel.cmd('settings', event);" />
+        <toolbarbutton id="OT-exit"       class="subviewbutton ot-exit"
+                       label="Выход"      oncommand="OnyxThornPanel.cmd('exit', event);" />
+
+      </vbox>
+    </panelview>
+  </panelmultiview>
+</panel>

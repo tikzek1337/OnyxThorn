@@ -1,0 +1,19 @@
+/*
+ * OnyxThorn userContent.css
+ *
+ * Styles applied to chrome:// pages we ship and a handful of about: pages.
+ * Drop into <profile>/chrome/userContent.css. The installer takes care of it.
+ */
+
+@-moz-document url-prefix("chrome://onyxthorn/") {
+  /* The welcome, preferences and home pages bring their own CSS. This block
+   * exists so future tweaks (e.g. injecting the accent var) live in one place. */
+  :root {
+    --onyxthorn-accent: #8B2BE2;
+  }
+}
+
+/* about:newtab — redirected to onyxthorn home but we also style anything left */
+@-moz-document url("about:newtab"), url("about:home") {
+  body, .outer-wrapper { background: #FAFAFA !important; }
+}

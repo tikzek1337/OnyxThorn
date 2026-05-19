@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!-- OnyxThorn about:preferences. Loaded at chrome://onyxthorn/content/preferences/preferences.html. -->
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Настройки OnyxThorn</title>
+  <link rel="icon" href="chrome://branding/content/about-logo.png" />
+  <link rel="stylesheet" href="preferences.css" />
+</head>
+<body data-pane="general">
+  <div class="layout">
+    <aside class="sidebar" aria-label="Категории настроек">
+      <div class="sidebar__brand">
+        <img src="chrome://branding/content/about-logo.png" alt="" />
+        <strong>Настройки</strong>
+      </div>
+      <nav>
+        <a href="#general"  data-pane="general"  class="nav is-active">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 9a3 3 0 100 6 3 3 0 000-6z"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.6V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.6-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.6V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.6 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.6 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>
+          <span>Основные</span>
+        </a>
+        <a href="#home" data-pane="home" class="nav">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-7 9 7v11a1 1 0 01-1 1h-5v-7H10v7H5a1 1 0 01-1-1v-9"/></svg>
+          <span>Начало</span>
+        </a>
+        <a href="#search" data-pane="search" class="nav">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <span>Поиск</span>
+        </a>
+        <a href="#privacy" data-pane="privacy" class="nav">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg>
+          <span>Приватность и защита</span>
+        </a>
+        <a href="#sync" data-pane="sync" class="nav">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 11-3.5-7.1"/><path d="M21 4v5h-5"/></svg>
+          <span>Синхронизация</span>
+        </a>
+      </nav>
+      <div class="sidebar__foot">
+        <span>OnyxThorn <span id="app-version">0.1.0</span></span>
+        <button type="button" class="link" id="check-update">Проверить обновление</button>
+      </div>
+    </aside>
+
+    <main class="content">
+      <!-- ============================ GENERAL ============================ -->
+      <section class="pane is-active" data-pane="general" aria-labelledby="pane-general-title">
+        <h1 id="pane-general-title">Основные</h1>
+
+        <div class="card">
+          <div class="card__head">
+            <strong>OnyxThorn по умолчанию</strong>
+            <p>Сделать OnyxThorn основным браузером в системе.</p>
+          </div>
+          <button type="button" class="btn btn--primary" id="make-default">Сделать основным</button>
+        </div>
+
+        <div class="card">
+          <div class="card__head">
+            <strong>Импорт данных</strong>
+            <p>Перенести закладки, историю и пароли из другого браузера или из облака.</p>
+          </div>
+          <div class="card__row">
+            <button type="button" class="btn btn--ghost" id="import-other">Импорт из браузера…</button>
+            <button type="button" class="btn btn--ghost" id="import-cloud">Импорт из облака OnyxThorn…</button>
+          </div>
+        </div>
+
+        <h2>Кастомизация</h2>
+
+        <div class="card">
+          <label class="row">
+            <span class="row__label">Акцентный цвет</span>
+            <input type="color" id="pref-accent" value="#8B2BE2" />
+          </label>
+          <div class="row">
+            <span class="row__label">Вкладки</span>
+            <div class="seg" role="radiogroup">
+              <label><input type="radio" name="tabs-orient" value="horizontal" checked /><span>Горизонтальные</span></label>
+              <label><input type="radio" name="tabs-orient" value="vertical" /><span>Вертикальные</span></label>
+            </div>
+          </div>
+          <div class="row">
+            <span class="row__label">Тема</span>
+            <div class="seg" role="radiogroup">
+              <label><input type="radio" name="theme-mode" value="light" /><span>Светлая</span></label>
+              <label><input type="radio" name="theme-mode" value="auto" checked /><span>Системная</span></label>
+              <label><input type="radio" name="theme-mode" value="dark" /><span>Тёмная</span></label>
+            </div>
+          </div>
+          <label class="row">
+            <span class="row__label">Шрифт</span>
+            <select id="pref-font">
+              <option value="Times New Roman" selected>Times New Roman</option>
+              <option value="Inter">Inter</option>
+              <option value="Roboto">Roboto</option>
+              <option value="Segoe UI">Segoe UI</option>
+              <option value="System UI">Системный</option>
+              <option value="Georgia">Georgia</option>
+              <option value="JetBrains Mono">JetBrains Mono</option>
+            </select>
+          </label>
+          <label class="row">
+            <span class="row__label">Размер шрифта</span>
+            <input type="number" id="pref-font-size" value="16" min="8" max="48" step="1" />
+            <span class="unit">px</span>
+          </label>
+          <div class="row">
+            <span class="row__label">Масштаб страниц</span>
+            <div class="zoom">
+              <button type="button" id="zoom-minus" aria-label="Уменьшить">−</button>
+              <span id="zoom-val">100%</span>
+              <button type="button" id="zoom-plus"  aria-label="Увеличить">+</button>
+              <button type="button" id="zoom-reset" class="link">Сбросить</button>
+            </div>
+          </div>
+          <label class="row">
+            <span class="row__label">Язык интерфейса</span>
+            <select id="pref-language">
+              <option value="ru" selected>Русский</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+        </div>
+
+        <h2>Файлы</h2>
+        <div class="card">
+          <label class="row">
+            <span class="row__label">Папка для загрузок</span>
+            <input type="text" id="pref-download-dir" value="C:\onyxthorn\downloads" />
+            <button type="button" class="btn btn--ghost btn--sm" id="browse-download-dir">Выбрать…</button>
+          </label>
+          <label class="row">
+            <span class="row__label">Всегда спрашивать, куда сохранять</span>
+            <label class="switch"><input type="checkbox" id="pref-ask-download" /><i></i></label>
+          </label>
+        </div>
+
+        <h2>О программе</h2>
+        <div class="card">
+          <div class="row"><span class="row__label">Версия</span><code id="version-string">OnyxThorn 0.1.0 (build aaaa-bb-cc)</code></div>
+          <div class="row"><span class="row__label">Канал</span><code>release</code></div>
+          <div class="row">
+            <span class="row__label">Обновления</span>
+            <button type="button" class="btn btn--ghost btn--sm" id="check-update-2">Проверить обновление</button>
+            <span id="update-status" class="muted"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ HOME ============================ -->
+      <section class="pane" data-pane="home" aria-labelledby="pane-home-title">
+        <h1 id="pane-home-title">Начало</h1>
+        <div class="card">
+          <label class="row">
+            <span class="row__label">Домашняя страница</span>
+            <select id="pref-homepage-mode">
+              <option value="onyxthorn" selected>Стартовая страница OnyxThorn</option>
+              <option value="blank">Пустая страница</option>
+              <option value="custom">Своя ссылка…</option>
+            </select>
+          </label>
+          <label class="row" id="pref-homepage-url-row" hidden>
+            <span class="row__label">Адрес</span>
+            <input type="url" id="pref-homepage-url" placeholder="https://example.com" />
+          </label>
+          <div class="row">
+            <span class="row__label">Новая вкладка</span>
+            <select id="pref-newtab-mode">
+              <option value="onyxthorn" selected>Стартовая страница OnyxThorn</option>
+              <option value="blank">Пустая страница</option>
+            </select>
+          </div>
+          <div class="row">
+            <span class="row__label">Закладки в новой вкладке</span>
+            <label class="switch"><input type="checkbox" id="pref-newtab-bookmarks" checked /><i></i></label>
+          </div>
+          <div class="row">
+            <span class="row__label">Поисковая строка в новой вкладке</span>
+            <label class="switch"><input type="checkbox" id="pref-newtab-search" checked /><i></i></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ SEARCH ============================ -->
+      <section class="pane" data-pane="search" aria-labelledby="pane-search-title">
+        <h1 id="pane-search-title">Поиск</h1>
+        <div class="card">
+          <div class="row">
+            <span class="row__label">Поисковая система по умолчанию</span>
+            <select id="pref-search-engine">
+              <option value="duckduckgo" selected>DuckDuckGo</option>
+              <option value="startpage">Startpage</option>
+              <option value="brave">Brave Search</option>
+              <option value="searxng">SearXNG (твой инстанс)</option>
+              <option value="google">Google</option>
+              <option value="bing">Bing</option>
+              <option value="yandex">Yandex</option>
+              <option value="ecosia">Ecosia</option>
+              <option value="kagi">Kagi</option>
+              <option value="custom">Своя…</option>
+            </select>
+          </div>
+          <div class="row">
+            <span class="row__label">Подсказки поиска</span>
+            <label class="switch"><input type="checkbox" id="pref-search-suggest" /><i></i></label>
+          </div>
+          <div class="row">
+            <span class="row__label">Поиск в адресной строке</span>
+            <label class="switch"><input type="checkbox" id="pref-search-bar" checked /><i></i></label>
+          </div>
+        </div>
+
+        <h2>Свои поисковые системы</h2>
+        <div class="card">
+          <table class="engines">
+            <thead><tr><th>Название</th><th>URL шаблон</th><th>Алиас</th><th></th></tr></thead>
+            <tbody id="custom-engines-list"></tbody>
+          </table>
+          <button type="button" class="btn btn--ghost btn--sm" id="add-engine">+ Добавить</button>
+        </div>
+      </section>
+
+      <!-- ============================ PRIVACY ============================ -->
+      <section class="pane" data-pane="privacy" aria-labelledby="pane-privacy-title">
+        <h1 id="pane-privacy-title">Приватность и защита</h1>
+
+        <h2>Защита от трекинга</h2>
+        <div class="card">
+          <div class="row">
+            <span class="row__label">Уровень защиты</span>
+            <div class="seg" role="radiogroup">
+              <label><input type="radio" name="tp-level" value="standard"  /><span>Стандарт</span></label>
+              <label><input type="radio" name="tp-level" value="strict" checked /><span>Строгий</span></label>
+              <label><input type="radio" name="tp-level" value="custom"   /><span>Свой</span></label>
+            </div>
+          </div>
+          <label class="row"><span class="row__label">Криптомайнеры</span>            <label class="switch"><input type="checkbox" id="pref-block-crypto" checked/><i></i></label></label>
+          <label class="row"><span class="row__label">Сборщики отпечатков</span>      <label class="switch"><input type="checkbox" id="pref-block-fingerprint" checked/><i></i></label></label>
+          <label class="row"><span class="row__label">Соцсетевые трекеры</span>       <label class="switch"><input type="checkbox" id="pref-block-social" checked/><i></i></label></label>
+          <label class="row"><span class="row__label">Сторонние cookies</span>        <label class="switch"><input type="checkbox" id="pref-block-3pcookies" checked/><i></i></label></label>
+        </div>
+
+        <h2>Анонимность</h2>
+        <div class="card">
+          <label class="row"><span class="row__label">Защита от снятия отпечатка (resistFingerprinting)</span>  <label class="switch"><input type="checkbox" id="pref-rfp"/><i></i></label></label>
+          <label class="row"><span class="row__label">Изоляция первого партнёра (FPI)</span>                    <label class="switch"><input type="checkbox" id="pref-fpi"/><i></i></label></label>
+          <label class="row"><span class="row__label">HTTPS-Only во всех окнах</span>                            <label class="switch"><input type="checkbox" id="pref-https-only" checked/><i></i></label></label>
+          <label class="row"><span class="row__label">Заголовок Do Not Track</span>                              <label class="switch"><input type="checkbox" id="pref-dnt" checked/><i></i></label></label>
+          <label class="row"><span class="row__label">Global Privacy Control</span>                              <label class="switch"><input type="checkbox" id="pref-gpc" checked/><i></i></label></label>
+          <label class="row"><span class="row__label">WebRTC утечки IP</span>                                   <label class="switch"><input type="checkbox" id="pref-webrtc-leak"/><i></i></label></label>
+          <label class="row"><span class="row__label">DoH (DNS-over-HTTPS)</span>
+            <select id="pref-doh">
+              <option value="off">Выкл</option>
+              <option value="cf" selected>Cloudflare (1.1.1.1)</option>
+              <option value="quad9">Quad9</option>
+              <option value="nextdns">NextDNS</option>
+              <option value="adguard">AdGuard DNS</option>
+              <option value="custom">Свой</option>
+            </select>
+          </label>
+        </div>
+
+        <h2>История и данные</h2>
+        <div class="card">
+          <div class="row">
+            <span class="row__label">История</span>
+            <select id="pref-history-mode">
+              <option value="remember" selected>Помнить историю</option>
+              <option value="dontremember">Никогда не сохранять</option>
+              <option value="custom">Свои настройки</option>
+            </select>
+          </div>
+          <label class="row"><span class="row__label">Автоочистка при выходе</span> <label class="switch"><input type="checkbox" id="pref-clear-on-exit"/><i></i></label></label>
+          <div class="row">
+            <span class="row__label">Очистить сейчас</span>
+            <button type="button" class="btn btn--ghost btn--sm" id="clear-now">Очистить данные…</button>
+          </div>
+        </div>
+
+        <h2>Разрешения</h2>
+        <div class="card">
+          <label class="row"><span class="row__label">Уведомления</span>     <button type="button" class="btn btn--ghost btn--sm">Настроить…</button></label>
+          <label class="row"><span class="row__label">Геолокация</span>      <button type="button" class="btn btn--ghost btn--sm">Настроить…</button></label>
+          <label class="row"><span class="row__label">Камера</span>          <button type="button" class="btn btn--ghost btn--sm">Настроить…</button></label>
+          <label class="row"><span class="row__label">Микрофон</span>        <button type="button" class="btn btn--ghost btn--sm">Настроить…</button></label>
+          <label class="row"><span class="row__label">Автовоспроизведение</span> <button type="button" class="btn btn--ghost btn--sm">Настроить…</button></label>
+          <label class="row"><span class="row__label">Блокировка всплывающих окон</span> <label class="switch"><input type="checkbox" id="pref-popups" checked/><i></i></label></label>
+        </div>
+
+        <h2>Безопасность</h2>
+        <div class="card">
+          <label class="row"><span class="row__label">Защита от опасных сайтов</span>     <label class="switch"><input type="checkbox" id="pref-safebrowsing" checked/><i></i></label></label>
+          <label class="row"><span class="row__label">Предупреждать о неизвестных загрузках</span> <label class="switch"><input type="checkbox" id="pref-dl-warn" checked/><i></i></label></label>
+          <label class="row"><span class="row__label">Мастер-пароль для хранилища</span>  <button type="button" class="btn btn--ghost btn--sm" id="setup-masterpw">Настроить…</button></label>
+        </div>
+      </section>
+
+      <!-- ============================ SYNC ============================ -->
+      <section class="pane" data-pane="sync" aria-labelledby="pane-sync-title">
+        <h1 id="pane-sync-title">Синхронизация</h1>
+
+        <div id="sync-signedout" class="card">
+          <div class="card__head">
+            <strong>Войти в OnyxThorn</strong>
+            <p>Для синхронизации между устройствами войди в свой аккаунт. Все данные шифруются ключом, который выводится из твоего пароля — сервер видит только зашифрованные блоки.</p>
+          </div>
+          <div class="card__row">
+            <button type="button" class="btn btn--primary" id="sync-signin">Войти</button>
+            <button type="button" class="btn btn--ghost"   id="sync-register">Создать аккаунт</button>
+          </div>
+        </div>
+
+        <div id="sync-signedin" hidden>
+          <h2>Аккаунт</h2>
+          <div class="card">
+            <div class="profile">
+              <label class="avatar" id="avatar-wrap">
+                <img id="avatar-img" alt="" src="chrome://branding/content/about-logo.png" />
+                <input type="file" id="avatar-file" accept="image/*" />
+                <span>Сменить</span>
+              </label>
+              <div class="profile__info">
+                <div class="row"><span class="row__label">Никнейм</span><input type="text" id="profile-nick" /></div>
+                <div class="row"><span class="row__label">Email</span><input type="email" id="profile-email" /></div>
+                <div class="row"><span class="row__label">Сервер</span><code id="sync-server">https://sync.onyxthorn.example</code></div>
+                <button type="button" class="link" id="change-server">Сменить…</button>
+              </div>
+            </div>
+            <div class="card__row">
+              <button type="button" class="btn btn--ghost"   id="change-password">Сменить пароль…</button>
+              <button type="button" class="btn btn--ghost"   id="sign-out">Выйти</button>
+            </div>
+          </div>
+
+          <h2>Что синхронизировать</h2>
+          <div class="card">
+            <label class="row"><span class="row__label">Закладки</span> <label class="switch"><input type="checkbox" id="sync-bookmarks" checked/><i></i></label></label>
+            <label class="row"><span class="row__label">История</span>  <label class="switch"><input type="checkbox" id="sync-history" checked/><i></i></label></label>
+            <label class="row"><span class="row__label">Пароли (E2E)</span><label class="switch"><input type="checkbox" id="sync-passwords" checked/><i></i></label></label>
+            <label class="row"><span class="row__label">Настройки</span> <label class="switch"><input type="checkbox" id="sync-settings" checked/><i></i></label></label>
+            <label class="row"><span class="row__label">Открытые вкладки</span><label class="switch"><input type="checkbox" id="sync-tabs"/><i></i></label></label>
+            <label class="row"><span class="row__label">Расширения</span><label class="switch"><input type="checkbox" id="sync-addons"/><i></i></label></label>
+          </div>
+
+          <h2>Действия</h2>
+          <div class="card">
+            <div class="card__row">
+              <button type="button" class="btn btn--primary" id="sync-now">Синхронизировать сейчас</button>
+              <button type="button" class="btn btn--ghost"   id="backup-now">Сделать резервную копию</button>
+              <button type="button" class="btn btn--ghost"   id="restore-backup">Восстановить из копии…</button>
+            </div>
+            <p class="muted" id="sync-last">Последняя синхронизация: никогда</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Sign-in modal (re-used) -->
+  <dialog class="signin" id="signin-modal">
+    <form method="dialog" class="signin__card">
+      <button type="button" class="signin__close" id="signin-close" aria-label="Закрыть">×</button>
+      <h2>Войти в OnyxThorn</h2>
+      <label class="field"><span>Email</span><input type="email" name="email" placeholder="your@email.com" required /></label>
+      <label class="field"><span>Пароль</span><input type="password" name="password" placeholder="••••••••" minlength="8" required /></label>
+      <button type="submit" class="btn btn--primary btn--block">Войти</button>
+      <button type="button" class="link" id="modal-register">Создать аккаунт</button>
+      <p class="signin__err" id="signin-err" hidden></p>
+    </form>
+  </dialog>
+
+  <script type="module" src="preferences.js"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!-- OnyxThorn welcome / onboarding flow. Loaded at chrome://onyxthorn/content/welcome/welcome.html on first run. -->
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Добро пожаловать в OnyxThorn</title>
+  <link rel="icon" href="chrome://branding/content/about-logo.png" />
+  <link rel="stylesheet" href="welcome.css" />
+</head>
+<body data-step="1" data-theme="auto" data-accent="#8B2BE2">
+  <!-- Background gradient blobs -->
+  <div class="blob blob--a" aria-hidden="true"></div>
+  <div class="blob blob--b" aria-hidden="true"></div>
+  <div class="blob blob--c" aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="shell__head">
+      <div class="brand">
+        <img src="chrome://branding/content/about-logo.png" alt="" class="brand__logo" />
+        <div class="brand__text">
+          <strong class="brand__name" data-i18n="brand.name">OnyxThorn</strong>
+          <span class="brand__tag" data-i18n="brand.tag">Чистый и минималистичный браузер</span>
+        </div>
+      </div>
+
+      <nav class="lang" aria-label="Язык">
+        <button type="button" class="lang__btn" data-lang="ru" aria-pressed="true">RU</button>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+      </nav>
+    </header>
+
+    <ol class="progress" aria-label="Шаги настройки">
+      <li class="progress__step is-active" data-step="1"><span>1</span><em data-i18n="progress.welcome">Приветствие</em></li>
+      <li class="progress__step" data-step="2"><span>2</span><em data-i18n="progress.theme">Тема</em></li>
+      <li class="progress__step" data-step="3"><span>3</span><em data-i18n="progress.accent">Цвет</em></li>
+      <li class="progress__step" data-step="4"><span>4</span><em data-i18n="progress.features">Функции</em></li>
+      <li class="progress__step" data-step="5"><span>5</span><em data-i18n="progress.layout">Вкладки</em></li>
+      <li class="progress__step" data-step="6"><span>6</span><em data-i18n="progress.account">Аккаунт</em></li>
+    </ol>
+
+    <!-- Step 1: Welcome -->
+    <section class="step is-active" data-step="1" aria-labelledby="step1-title">
+      <h1 id="step1-title" data-i18n="step1.title">Добро пожаловать в OnyxThorn</h1>
+      <p class="step__lede" data-i18n="step1.lede">
+        Чистый и минималистичный браузер, заточенный под анонимность и удобство.
+        Несколько шагов — и он станет точно таким, как тебе нравится.
+      </p>
+      <div class="step__cards">
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">🛡️</div>
+          <h3 data-i18n="step1.card1.title">Анонимность</h3>
+          <p data-i18n="step1.card1.text">DuckDuckGo по умолчанию, защита от трекинга и отпечатков пальцев, нулевой телеметрический трафик.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">✨</div>
+          <h3 data-i18n="step1.card2.title">Минимализм</h3>
+          <p data-i18n="step1.card2.text">Только то, что нужно. Никаких Pocket, Mozilla VPN или рекламы в новой вкладке.</p>
+        </article>
+        <article class="card">
+          <div class="card__icon" aria-hidden="true">⚡</div>
+          <h3 data-i18n="step1.card3.title">Удобство</h3>
+          <p data-i18n="step1.card3.text">Горизонтальные или вертикальные вкладки, кастомный акцент, темная/светлая тема, RU/EN.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Step 2: Theme -->
+    <section class="step" data-step="2" aria-labelledby="step2-title">
+      <h1 id="step2-title" data-i18n="step2.title">Выбери тему</h1>
+      <p class="step__lede" data-i18n="step2.lede">Это можно изменить в любой момент в Настройках → Основные.</p>
+      <div class="theme-grid" role="radiogroup" aria-label="Тема оформления">
+        <label class="theme-card" data-value="light">
+          <input type="radio" name="theme" value="light" />
+          <div class="theme-card__preview theme-card__preview--light">
+            <div class="tcp-tabbar"></div>
+            <div class="tcp-content"></div>
+          </div>
+          <span data-i18n="step2.light">Светлая</span>
+        </label>
+        <label class="theme-card is-selected" data-value="auto">
+          <input type="radio" name="theme" value="auto" checked />
+          <div class="theme-card__preview theme-card__preview--auto">
+            <div class="tcp-tabbar"></div>
+            <div class="tcp-content"></div>
+          </div>
+          <span data-i18n="step2.auto">Системная</span>
+        </label>
+        <label class="theme-card" data-value="dark">
+          <input type="radio" name="theme" value="dark" />
+          <div class="theme-card__preview theme-card__preview--dark">
+            <div class="tcp-tabbar"></div>
+            <div class="tcp-content"></div>
+          </div>
+          <span data-i18n="step2.dark">Тёмная</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Step 3: Accent -->
+    <section class="step" data-step="3" aria-labelledby="step3-title">
+      <h1 id="step3-title" data-i18n="step3.title">Выбери акцентный цвет</h1>
+      <p class="step__lede" data-i18n="step3.lede">Этот цвет будет использоваться для кнопок, ссылок и активных вкладок.</p>
+      <div class="swatches" role="radiogroup" aria-label="Цвет акцента">
+        <label class="sw" style="--c:#8B2BE2"><input type="radio" name="accent" value="#8B2BE2" checked /><span aria-hidden="true"></span></label>
+        <label class="sw" style="--c:#EC4899"><input type="radio" name="accent" value="#EC4899" /><span aria-hidden="true"></span></label>
+        <label class="sw" style="--c:#F97316"><input type="radio" name="accent" value="#F97316" /><span aria-hidden="true"></span></label>
+        <label class="sw" style="--c:#F59E0B"><input type="radio" name="accent" value="#F59E0B" /><span aria-hidden="true"></span></label>
+        <label class="sw" style="--c:#10B981"><input type="radio" name="accent" value="#10B981" /><span aria-hidden="true"></span></label>
+        <label class="sw" style="--c:#06B6D4"><input type="radio" name="accent" value="#06B6D4" /><span aria-hidden="true"></span></label>
+        <label class="sw" style="--c:#3B82F6"><input type="radio" name="accent" value="#3B82F6" /><span aria-hidden="true"></span></label>
+        <label class="sw" style="--c:#1F2937"><input type="radio" name="accent" value="#1F2937" /><span aria-hidden="true"></span></label>
+      </div>
+
+      <label class="custom-color">
+        <span data-i18n="step3.custom">Или свой:</span>
+        <input type="color" value="#8B2BE2" id="accent-custom" />
+        <code id="accent-code">#8B2BE2</code>
+      </label>
+    </section>
+
+    <!-- Step 4: Features -->
+    <section class="step" data-step="4" aria-labelledby="step4-title">
+      <h1 id="step4-title" data-i18n="step4.title">Какие функции включить?</h1>
+      <p class="step__lede" data-i18n="step4.lede">По умолчанию OnyxThorn максимально приватный. Здесь можно ослабить или усилить настройки.</p>
+
+      <ul class="features">
+        <li class="feature">
+          <div class="feature__text">
+            <strong data-i18n="step4.tp.title">Усиленная защита от трекинга</strong>
+            <p data-i18n="step4.tp.text">Блокирует сторонние трекеры, криптомайнеры и сборщиков отпечатков.</p>
+          </div>
+          <label class="switch"><input type="checkbox" data-pref="privacy.trackingprotection.enabled" checked /><i></i></label>
+        </li>
+        <li class="feature">
+          <div class="feature__text">
+            <strong data-i18n="step4.fp.title">Защита от снятия отпечатка</strong>
+            <p data-i18n="step4.fp.text">Подгоняет canvas, шрифты и таймеры. Может ломать редкие сайты — поэтому опционально.</p>
+          </div>
+          <label class="switch"><input type="checkbox" data-pref="privacy.resistFingerprinting" /><i></i></label>
+        </li>
+        <li class="feature">
+          <div class="feature__text">
+            <strong data-i18n="step4.fpi.title">Изоляция первого партнёра (FPI)</strong>
+            <p data-i18n="step4.fpi.text">Cookie и кеш привязаны к домену вкладки. Очень сильная защита, ломает редкие сайты с SSO.</p>
+          </div>
+          <label class="switch"><input type="checkbox" data-pref="privacy.firstparty.isolate" /><i></i></label>
+        </li>
+        <li class="feature">
+          <div class="feature__text">
+            <strong data-i18n="step4.https.title">HTTPS-Only во всех окнах</strong>
+            <p data-i18n="step4.https.text">Принудительно использует HTTPS, спрашивает разрешение при HTTP-сайтах.</p>
+          </div>
+          <label class="switch"><input type="checkbox" data-pref="dom.security.https_only_mode" checked /><i></i></label>
+        </li>
+        <li class="feature">
+          <div class="feature__text">
+            <strong data-i18n="step4.dnt.title">Do Not Track</strong>
+            <p data-i18n="step4.dnt.text">Отправляет сайтам сигнал «не отслеживать меня».</p>
+          </div>
+          <label class="switch"><input type="checkbox" data-pref="privacy.donottrackheader.enabled" checked /><i></i></label>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Step 5: Tab layout -->
+    <section class="step" data-step="5" aria-labelledby="step5-title">
+      <h1 id="step5-title" data-i18n="step5.title">Как ты любишь вкладки?</h1>
+      <p class="step__lede" data-i18n="step5.lede">Можно поменять в Настройках → Основные → Кастомизация.</p>
+      <div class="layout-grid" role="radiogroup" aria-label="Расположение вкладок">
+        <label class="layout-card is-selected" data-value="horizontal">
+          <input type="radio" name="layout" value="horizontal" checked />
+          <div class="layout-card__preview layout-card__preview--h">
+            <div class="lcp-tabs">
+              <i></i><i class="is-on"></i><i></i><i></i>
+            </div>
+            <div class="lcp-body"></div>
+          </div>
+          <span data-i18n="step5.horizontal">Горизонтальные</span>
+        </label>
+        <label class="layout-card" data-value="vertical">
+          <input type="radio" name="layout" value="vertical" />
+          <div class="layout-card__preview layout-card__preview--v">
+            <div class="lcp-tabs">
+              <i></i><i class="is-on"></i><i></i><i></i>
+            </div>
+            <div class="lcp-body"></div>
+          </div>
+          <span data-i18n="step5.vertical">Вертикальные</span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Step 6: Account -->
+    <section class="step" data-step="6" aria-labelledby="step6-title">
+      <h1 id="step6-title" data-i18n="step6.title">Аккаунт OnyxThorn</h1>
+      <p class="step__lede" data-i18n="step6.lede">
+        Аккаунт нужен только для синхронизации между устройствами. Без него браузер работает полностью локально.
+      </p>
+
+      <div class="account-actions">
+        <button type="button" class="btn btn--ghost btn--xl" id="account-skip" data-i18n="step6.skip">
+          Не входить — продолжить как есть
+        </button>
+
+        <div class="account-or" aria-hidden="true">
+          <span data-i18n="step6.or">или</span>
+        </div>
+
+        <div class="account-signin-wrap">
+          <button type="button" class="btn btn--primary btn--sm" id="account-signin" data-i18n="step6.signin">
+            Войти в OnyxThorn
+          </button>
+          <div class="hover-tip" role="tooltip" id="signin-tip">
+            <strong data-i18n="step6.tip.title">Что будет синхронизироваться</strong>
+            <p data-i18n="step6.tip.text">
+              Полная синхронизация: настройки, закладки, история, пароли (с E2E-шифрованием),
+              открытые вкладки и резервная копия профиля.<br>
+              Данные уходят на твой сервер: <code id="sync-server-url">https://sync.onyxthorn.example</code><br>
+              <em data-i18n="step6.tip.foot">Синхронизация запускается только когда ты сам нажмёшь «Синхронизировать сейчас» в настройках.</em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="shell__foot">
+      <button type="button" class="btn btn--ghost" id="back" data-i18n="nav.back" hidden>Назад</button>
+      <span class="step-of"><span id="step-now">1</span> / 6</span>
+      <button type="button" class="btn btn--primary" id="next" data-i18n="nav.next">Продолжить</button>
+      <button type="button" class="btn btn--primary" id="finish" data-i18n="nav.finish" hidden>Готово</button>
+    </footer>
+  </main>
+
+  <!-- Sign-in modal: matches the figma "Войти в OnyxThorn" card. -->
+  <dialog class="signin" id="signin-modal" aria-labelledby="signin-title">
+    <form method="dialog" class="signin__card">
+      <button type="button" class="signin__close" id="signin-close" aria-label="Закрыть">×</button>
+      <h2 id="signin-title" data-i18n="signin.title">Войти в OnyxThorn</h2>
+      <label class="field">
+        <span data-i18n="signin.email">Email</span>
+        <input type="email" name="email" placeholder="your@email.com" autocomplete="username" required />
+      </label>
+      <label class="field">
+        <span data-i18n="signin.password">Пароль</span>
+        <input type="password" name="password" placeholder="••••••••" autocomplete="current-password" minlength="8" required />
+      </label>
+      <button type="submit" class="btn btn--primary btn--block" id="signin-submit" data-i18n="signin.submit">Войти</button>
+      <button type="button" class="link" id="signin-register" data-i18n="signin.register">Создать аккаунт</button>
+      <p class="signin__err" id="signin-err" hidden></p>
+    </form>
+  </dialog>
+
+  <script type="module" src="welcome.js"></script>
+</body>
+</html>

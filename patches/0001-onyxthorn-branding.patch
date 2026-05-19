@@ -1,0 +1,25 @@
+# HG changeset patch
+# User OnyxThorn <build@onyxthorn.example>
+# Date 1737000000 0
+#      OnyxThorn 0.1.0 - register the new branding directory
+
+Register browser/branding/onyxthorn as a build option. The actual files
+under that directory are written by branding/configure/configure.sh
+*before* mach build is run, so this patch only needs to teach the build
+system that "onyxthorn" is a valid branding name.
+
+diff --git a/browser/branding/moz.configure b/browser/branding/moz.configure
+--- a/browser/branding/moz.configure
++++ b/browser/branding/moz.configure
+@@ -1,5 +1,5 @@
+ # vim:set ts=4 sw=4 sts=4 et ft=python:
+-imply_option('--with-branding', 'browser/branding/unofficial', 'default')
++imply_option('--with-branding', 'browser/branding/onyxthorn', 'default')
+
+diff --git a/browser/branding/onyxthorn/.placeholder b/browser/branding/onyxthorn/.placeholder
+new file mode 100644
+--- /dev/null
++++ b/browser/branding/onyxthorn/.placeholder
+@@ -0,0 +1,2 @@
++# This directory is populated by `branding/configure/configure.sh` in the
++# OnyxThorn repo before mach build is run. See onyxthorn-browser/branding/.

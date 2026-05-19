@@ -1,0 +1,48 @@
+# OnyxThorn — Windows release mozconfig.
+# Use from a `mozilla-build` shell on Windows, after running scripts/apply-patches.sh.
+
+# Build under obj-windows/ next to mozilla-unified
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-windows
+
+# Branding
+ac_add_options --enable-update-channel=release
+ac_add_options --with-branding=browser/branding/onyxthorn
+ac_add_options --with-app-name=onyxthorn
+ac_add_options --with-app-basename=OnyxThorn
+ac_add_options --with-distribution-id=app.onyxthorn
+
+# App
+ac_add_options --enable-application=browser
+ac_add_options --enable-optimize="-O2"
+ac_add_options --enable-release
+ac_add_options --enable-rust-simd
+ac_add_options --enable-lto=cross
+
+# Disable telemetry / crash reporter ─ shipping our own ID-less builds.
+ac_add_options --disable-crashreporter
+ac_add_options --disable-tests
+ac_add_options --disable-debug
+ac_add_options --disable-debug-js-modules
+ac_add_options --disable-default-browser-agent
+ac_add_options MOZ_TELEMETRY_REPORTING=
+ac_add_options MOZ_DATA_REPORTING=
+ac_add_options MOZ_SERVICES_HEALTHREPORT=
+
+# Mozilla account / sync — we replace it with OnyxThornSync.
+export MOZ_SERVICES_SYNC=0
+
+# Update URL is overridden at runtime by branding prefs; this just enables the feature.
+ac_add_options --enable-update-packaging
+
+# Profiler / Sandboxing kept on.
+ac_add_options --enable-profiling
+
+# Default search bundle from our list.
+ac_add_options --with-mozilla-api-keyfile=/dev/null
+
+# Windows installer (NSIS)
+ac_add_options --enable-installer
+ac_add_options --enable-maintenance-service
+
+# Don't auto-update sources during build.
+mk_add_options AUTOCLOBBER=1

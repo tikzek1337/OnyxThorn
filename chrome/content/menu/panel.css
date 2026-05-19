@@ -1,0 +1,35 @@
+/* OnyxThorn panel menu styling */
+
+.onyxthorn-panel {
+  --panel-padding: 6px !important;
+  --panel-border-radius: 14px !important;
+  font-family: "Times New Roman", "Inter", "Segoe UI", system-ui, sans-serif;
+}
+.onyxthorn-panel .panel-subview-body { padding: 4px; }
+.onyxthorn-panel .subviewbutton {
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+}
+.onyxthorn-panel .subviewbutton .toolbarbutton-text {
+  font-family: inherit !important;
+}
+.onyxthorn-panel .ot-sep {
+  margin: 4px 8px !important;
+  border-top: 1px solid var(--ot-border, #E5E7EB) !important;
+}
+.onyxthorn-panel .ot-exit {
+  color: #DC2626 !important;
+}
+
+.onyxthorn-panel .ot-zoom { padding: 4px 12px !important; gap: 6px; }
+.onyxthorn-panel .ot-zoom-label { font-size: 13px; flex: 1 1 auto; }
+.onyxthorn-panel .ot-zoom-value { min-width: 42px; text-align: center; font-variant-numeric: tabular-nums; font-size: 13px; }
+.onyxthorn-panel .ot-zoom-btn {
+  min-width: 28px; min-height: 28px;
+  border-radius: 6px !important;
+  background: var(--ot-surface-2, #F4F4F5) !important;
+}
+.onyxthorn-panel .ot-zoom-btn:hover {
+  background: var(--ot-accent-soft, rgba(139, 43, 226, 0.16)) !important;
+}

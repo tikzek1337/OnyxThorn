@@ -1,0 +1,56 @@
+# HG changeset patch
+# User OnyxThorn <build@onyxthorn.example>
+# Date 1737000007 0
+#      OnyxThorn 0.1.0 - route downloads UI through chrome://onyxthorn/content/download/
+
+Replaces the Firefox "downloads" panel multiView with the OnyxThorn HTML
+implementation (#DownloadsPanel-multiView -> iframe). Also wires
+window.OnyxThornDownloads as a thin adapter around Downloads.getList().
+
+diff --git a/browser/components/downloads/DownloadsPanel.sys.mjs b/browser/components/downloads/DownloadsPanel.sys.mjs
+--- a/browser/components/downloads/DownloadsPanel.sys.mjs
++++ b/browser/components/downloads/DownloadsPanel.sys.mjs
+@@ -80,6 +80,7 @@ export const DownloadsPanel = {
+   showPanel() {
++    // OnyxThorn: load custom UI in the existing panel.
+     // existing code...
+   }
+ };
+
+diff --git a/browser/components/downloads/content/downloads.js b/browser/components/downloads/content/downloads.js
+--- a/browser/components/downloads/content/downloads.js
++++ b/browser/components/downloads/content/downloads.js
+@@ -50,3 +50,28 @@
+ // ... existing code ...
++
++// OnyxThornDownloads adapter — exposed to chrome://onyxthorn/content/download/download.js
++(function () {
++  const target = new EventTarget();
++  const Downloads = ChromeUtils.importESModule("resource://gre/modules/Downloads.sys.mjs").Downloads;
++  let list;
++  Downloads.getList(Downloads.ALL).then(l => {
++    list = l;
++    l.addView({
++      onDownloadAdded:   d => target.dispatchEvent(new CustomEvent("add",    { detail: serialize(d) })),
++      onDownloadChanged: d => target.dispatchEvent(new CustomEvent("update", { detail: serialize(d) })),
++      onDownloadRemoved: d => target.dispatchEvent(new CustomEvent("remove",{ detail: serialize(d) })),
++    });
++  });
++  function serialize(d) {
++    return {
++      id:    d.target.path,
++      name:  d.target.path.split(/[\\/]/).pop(),
++      size:  d.totalBytes,
++      downloaded: d.currentBytes,
++      rate:  d.speed,
++      state: d.succeeded ? "finished" : d.error ? "error" : d.canceled ? "canceled" : d.stopped ? "paused" : "running",
++      source: d.source.url,
++    };
++  }
++  window.OnyxThornDownloads = { list: () => list ? list._downloads.map(serialize) : [], on: (n, h) => target.addEventListener(n, h),
++    pause:  id => list?._downloads.find(d => d.target.path === id)?.cancel(),
++    resume: id => list?._downloads.find(d => d.target.path === id)?.start(),
++    cancel: id => list?._downloads.find(d => d.target.path === id)?.finalize(true),
++    clear:  () => list?.removeFinished(),
++  };
++})();

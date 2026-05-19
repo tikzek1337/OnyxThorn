@@ -1,0 +1,26 @@
+# OnyxThorn — macOS release mozconfig.
+
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj-mac
+
+ac_add_options --enable-update-channel=release
+ac_add_options --with-branding=browser/branding/onyxthorn
+ac_add_options --with-app-name=onyxthorn
+ac_add_options --with-app-basename=OnyxThorn
+ac_add_options --with-distribution-id=app.onyxthorn
+
+ac_add_options --enable-application=browser
+ac_add_options --enable-optimize="-O2"
+ac_add_options --enable-release
+ac_add_options --enable-rust-simd
+ac_add_options --enable-lto=cross
+ac_add_options --disable-crashreporter
+ac_add_options --disable-tests
+ac_add_options --disable-debug
+ac_add_options --disable-debug-js-modules
+ac_add_options --disable-default-browser-agent
+ac_add_options MOZ_TELEMETRY_REPORTING=
+ac_add_options MOZ_DATA_REPORTING=
+ac_add_options MOZ_SERVICES_HEALTHREPORT=
+export MOZ_SERVICES_SYNC=0
+ac_add_options --enable-update-packaging
+mk_add_options AUTOCLOBBER=1

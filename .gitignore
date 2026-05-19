@@ -1,0 +1,46 @@
+# Build artifacts
+obj-*/
+mozilla-unified/
+mozilla-central/
+firefox-source/
+.mozbuild/
+*.xpi
+*.mar
+*.exe
+!installer/nsis/*.nsi
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Server runtime data
+server/data/
+server/*.db
+server/*.sqlite
+server/*.sqlite3
+server/.env
+server/uploads/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Logs
+*.log

@@ -1,0 +1,26 @@
+# HG changeset patch
+# User OnyxThorn <build@onyxthorn.example>
+# Date 1737000006 0
+#      OnyxThorn 0.1.0 - overlay custom panel menu (three dots)
+
+Replaces the default Firefox AppMenu (#PanelUI-menu-button) with the
+OnyxThorn panel defined in content/menu/panel.xhtml.
+
+diff --git a/browser/base/content/browser.xhtml b/browser/base/content/browser.xhtml
+--- a/browser/base/content/browser.xhtml
++++ b/browser/base/content/browser.xhtml
+@@ -120,6 +120,8 @@
+       <script src="chrome://browser/content/browser-allTabsMenu.js" />
+       <script src="chrome://browser/content/utilityOverlay.js" />
++      <script src="chrome://onyxthorn/content/menu/panel.js" />
++      <html:link rel="stylesheet" href="chrome://onyxthorn/content/menu/panel.css" />
+
+diff --git a/browser/base/content/browser.xhtml b/browser/base/content/browser.xhtml
+--- a/browser/base/content/browser.xhtml
++++ b/browser/base/content/browser.xhtml
+@@ -1500,5 +1502,7 @@
+   </tooltip>
++
++#include ../../../components/onyxthorn/content/menu/panel.xhtml
+
+ </window>

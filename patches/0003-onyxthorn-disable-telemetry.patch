@@ -1,0 +1,47 @@
+# HG changeset patch
+# User OnyxThorn <build@onyxthorn.example>
+# Date 1737000002 0
+#      OnyxThorn 0.1.0 - hard-disable all telemetry pipelines at build time
+
+Belt-and-braces over the lockPref entries in onyxthorn.cfg: hard-code
+telemetry collection to return immediately, so even if a pref slips
+through, nothing leaves the machine.
+
+diff --git a/toolkit/components/telemetry/app/TelemetrySend.sys.mjs b/toolkit/components/telemetry/app/TelemetrySend.sys.mjs
+--- a/toolkit/components/telemetry/app/TelemetrySend.sys.mjs
++++ b/toolkit/components/telemetry/app/TelemetrySend.sys.mjs
+@@ -120,6 +120,11 @@ export class TelemetrySendImpl {
+   }
+
+   async submitPing(ping) {
++    // OnyxThorn: telemetry is permanently disabled. We swallow the ping rather
++    // than letting it queue up on disk.
++    if (Cc["@mozilla.org/process/environment;1"]) {
++      return Promise.resolve();
++    }
+     // … original submission code follows …
+     return this._doSubmit(ping);
+   }
+ }
+
+diff --git a/browser/app/profile/firefox.js b/browser/app/profile/firefox.js
+--- a/browser/app/profile/firefox.js
++++ b/browser/app/profile/firefox.js
+@@ -2,6 +2,17 @@
+ // This Source Code Form is subject to the terms of the Mozilla Public
+ // License, v. 2.0. If a copy of the MPL was not distributed with this
+ // file, You can obtain one at http://mozilla.org/MPL/2.0/.
++//
++// OnyxThorn defaults — locked off telemetry / data reporting.
++//
++pref("toolkit.telemetry.enabled", false);
++pref("toolkit.telemetry.unified", false);
++pref("toolkit.telemetry.archive.enabled", false);
++pref("toolkit.telemetry.bhrPing.enabled", false);
++pref("datareporting.healthreport.uploadEnabled", false);
++pref("datareporting.policy.dataSubmissionEnabled", false);
++pref("app.shield.optoutstudies.enabled", false);
++pref("app.normandy.enabled", false);
+
+ // The pref below is intentionally _NOT_ overridden by user prefs.
+ pref("toolkit.defaultChromeURI", "chrome://browser/content/browser.xhtml");

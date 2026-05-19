@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- OnyxThorn download notification panel.
+     Mounted by patch 0008-onyxthorn-downloads.patch as the contents of
+     #downloads-panel-multiView. The same HTML is also reachable at
+     about:downloads (chrome://onyxthorn/content/download/download.html). -->
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>Загрузки — OnyxThorn</title>
+  <link rel="stylesheet" href="download.css" />
+</head>
+<body>
+  <header class="head">
+    <h1>Загрузки</h1>
+    <div class="actions">
+      <button class="btn btn--ghost btn--sm" id="open-folder">Открыть папку</button>
+      <button class="btn btn--ghost btn--sm" id="clear-history">Очистить историю</button>
+    </div>
+  </header>
+
+  <section class="downloads" id="downloads-list" aria-live="polite">
+    <p class="empty" id="empty-state">Здесь будут загружаемые и недавно скачанные файлы.</p>
+  </section>
+
+  <template id="dl-template">
+    <article class="dl" data-id="">
+      <div class="dl__icon"><span class="dl__ext"></span></div>
+      <div class="dl__body">
+        <div class="dl__head">
+          <strong class="dl__name"></strong>
+          <span class="dl__size"></span>
+        </div>
+        <div class="dl__bar"><div class="dl__bar-fill"></div></div>
+        <div class="dl__meta">
+          <span class="dl__rate"></span>
+          <span class="dl__eta"></span>
+          <span class="dl__source"></span>
+        </div>
+      </div>
+      <div class="dl__cta">
+        <button class="dl__pause" type="button" aria-label="Пауза">⏸</button>
+        <button class="dl__resume" type="button" aria-label="Возобновить" hidden>▶</button>
+        <button class="dl__open"   type="button" aria-label="Открыть"   hidden>↗</button>
+        <button class="dl__cancel" type="button" aria-label="Отменить">×</button>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="download.js"></script>
+</body>
+</html>

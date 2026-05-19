@@ -1,0 +1,2 @@
+[console_scripts]
+onyxthorn-sync = app.main:run

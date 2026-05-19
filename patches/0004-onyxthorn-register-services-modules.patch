@@ -1,0 +1,37 @@
+# HG changeset patch
+# User OnyxThorn <build@onyxthorn.example>
+# Date 1737000003 0
+#      OnyxThorn 0.1.0 - register OnyxThornSync / OnyxThornUpdater modules
+
+Adds services/onyxthorn/ to the build and registers the two ESM modules
+under resource://services/onyxthorn/ so they can be imported from
+ChromeUtils.importESModule().
+
+diff --git a/services/moz.build b/services/moz.build
+--- a/services/moz.build
++++ b/services/moz.build
+@@ -8,6 +8,7 @@ with Files('**'):
+ DIRS += [
+     'common',
+     'crypto',
++    'onyxthorn',
+     'settings',
+     'sync',
+ ]
+
+diff --git a/services/onyxthorn/moz.build b/services/onyxthorn/moz.build
+new file mode 100644
+--- /dev/null
++++ b/services/onyxthorn/moz.build
+@@ -0,0 +1,11 @@
++# vim:set ts=8 sw=4 sts=4 et ft=python:
++# This Source Code Form is subject to the terms of the Mozilla Public
++# License, v. 2.0. If a copy of the MPL was not distributed with this
++# file, You can obtain one at http://mozilla.org/MPL/2.0/.
++
++EXTRA_JS_MODULES["services/onyxthorn"] += [
++    "OnyxThornSync.sys.mjs",
++    "OnyxThornUpdater.sys.mjs",
++]
++
++JAR_MANIFESTS = []
