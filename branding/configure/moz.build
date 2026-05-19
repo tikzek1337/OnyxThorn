@@ -1,0 +1,23 @@
+# vim:set ts=8 sw=4 sts=4 et ft=python:
+# OnyxThorn branding moz.build — installed into browser/branding/onyxthorn/
+
+JAR_MANIFESTS += ['jar.mn']
+
+with Files('**'):
+    BUG_COMPONENT = ('Firefox', 'General')
+
+BROWSER_CHROME_MANIFESTS += []
+
+FINAL_TARGET_FILES.chrome.icons.default += [
+    'default16.png',
+    'default22.png',
+    'default24.png',
+    'default32.png',
+    'default48.png',
+    'default64.png',
+    'default128.png',
+    'default256.png',
+]
+
+FINAL_TARGET_FILES['..'] += ['firefox.ico']
+FINAL_TARGET_FILES['..'] += ['document.ico']

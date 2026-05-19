@@ -1,0 +1,35 @@
+# HG changeset patch
+# User OnyxThorn <build@onyxthorn.example>
+# Date 1737000001 0
+#      OnyxThorn 0.1.0 - DuckDuckGo as global default search engine
+
+Move DuckDuckGo into the always-default position by updating the search
+engine list config. We keep all other engines so the user can still pick
+them from preferences.
+
+diff --git a/services/settings/dumps/main/search-default-override-allowlist.json b/services/settings/dumps/main/search-default-override-allowlist.json
+--- a/services/settings/dumps/main/search-default-override-allowlist.json
++++ b/services/settings/dumps/main/search-default-override-allowlist.json
+@@ -1,3 +1,3 @@
+ {
+-  "data": []
++  "data": [{"id": "duckduckgo", "default": true}]
+ }
+
+diff --git a/toolkit/components/search/SearchService.sys.mjs b/toolkit/components/search/SearchService.sys.mjs
+--- a/toolkit/components/search/SearchService.sys.mjs
++++ b/toolkit/components/search/SearchService.sys.mjs
+@@ -1,3 +1,5 @@
++// OnyxThorn: DuckDuckGo is always the initial default. Users can switch in
++// about:preferences#search.
+ import {
+   AppConstants,
+ } from "resource://gre/modules/AppConstants.sys.mjs";
+@@ -50,7 +52,7 @@ export class SearchService {
+   #defaultEngineSelector;
+
+   async #initializeDefaultEngines() {
+-    return await this.#defaultEngineSelector.fetchEngineSelection();
++    return { engineName: "DuckDuckGo", ...(await this.#defaultEngineSelector.fetchEngineSelection()) };
+   }
+ }

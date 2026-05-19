@@ -1,0 +1,19 @@
+# HG changeset patch
+# User OnyxThorn <build@onyxthorn.example>
+# Date 1737000009 0
+#      OnyxThorn 0.1.0 - drop Pocket integration entirely
+
+Removes the Pocket directory from browser/components/moz.build so the
+component is never built. Combined with the locked pref this means no
+Pocket code ever ships in OnyxThorn binaries.
+
+diff --git a/browser/components/moz.build b/browser/components/moz.build
+--- a/browser/components/moz.build
++++ b/browser/components/moz.build
+@@ -48,7 +48,6 @@ DIRS += [
+     'onyxthorn',
+     'places',
+-    'pocket',
+     'preferences',
+     'privatebrowsing',
+     'profiles',

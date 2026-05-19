@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- OnyxThorn home / new-tab page. chrome://onyxthorn/content/home/home.html -->
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OnyxThorn</title>
+  <link rel="icon" href="chrome://branding/content/about-logo.png" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+  <main class="home">
+    <header class="home__brand">
+      <img src="chrome://branding/content/about-logo.png" alt="" />
+      <h1>OnyxThorn</h1>
+      <p>Чистый и минималистичный браузер</p>
+    </header>
+
+    <form class="search" id="search-form" role="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" name="q" autocomplete="off" placeholder="Поиск или адрес…" autofocus />
+      <button type="submit" aria-label="Найти">→</button>
+    </form>
+
+    <section class="shortcuts" id="shortcuts" aria-label="Закладки"></section>
+
+    <footer class="home__foot">
+      <a href="chrome://onyxthorn/content/preferences/preferences.html">Настройки</a>
+      <a href="#" id="manage-shortcuts">Управлять ярлыками</a>
+      <a href="https://onyxthorn.example">onyxthorn.example</a>
+    </footer>
+  </main>
+
+  <dialog id="add-shortcut">
+    <form method="dialog" class="add">
+      <h3>Новый ярлык</h3>
+      <label>Название<input name="name" required /></label>
+      <label>URL<input name="url" type="url" required placeholder="https://example.com" /></label>
+      <div class="add__buttons">
+        <button type="button" value="cancel" id="add-cancel">Отмена</button>
+        <button type="submit" value="ok">Добавить</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script defer src="home.js"></script>
+</body>
+</html>

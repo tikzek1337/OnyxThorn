@@ -1,0 +1,52 @@
+# HG changeset patch
+# User OnyxThorn <build@onyxthorn.example>
+# Date 1737000004 0
+#      OnyxThorn 0.1.0 - register chrome://onyxthorn/ and show welcome on first run
+
+Mounts browser/components/onyxthorn/ as the chrome://onyxthorn/ namespace
+and overrides startup.homepage_welcome_url to point at our welcome page.
+
+diff --git a/browser/components/moz.build b/browser/components/moz.build
+--- a/browser/components/moz.build
++++ b/browser/components/moz.build
+@@ -45,6 +45,7 @@ DIRS += [
+     'newtab',
+     'originattributes',
+     'pagedata',
++    'onyxthorn',
+     'places',
+     'pocket',
+     'preferences',
+
+diff --git a/browser/components/onyxthorn/moz.build b/browser/components/onyxthorn/moz.build
+new file mode 100644
+--- /dev/null
++++ b/browser/components/onyxthorn/moz.build
+@@ -0,0 +1,9 @@
++# vim:set ts=8 sw=4 sts=4 et ft=python:
++# OnyxThorn chrome resources.
++
++JAR_MANIFESTS += ['jar.mn']
++
++with Files('**'):
++    BUG_COMPONENT = ('Firefox', 'General')
++
++FINAL_TARGET_FILES.defaults.pref += ['../../../branding/pref/firefox-branding.js']
+
+diff --git a/browser/components/BrowserGlue.sys.mjs b/browser/components/BrowserGlue.sys.mjs
+--- a/browser/components/BrowserGlue.sys.mjs
++++ b/browser/components/BrowserGlue.sys.mjs
+@@ -800,8 +800,11 @@ class BrowserGlue {
+       Services.prefs.setBoolPref(PREF_NEW_PROFILE_FORCE_WELCOME, false);
+       return;
+     }
+-    // Default Firefox welcome page.
+-    let welcomeURL = Services.prefs.getStringPref("startup.homepage_welcome_url");
++    // OnyxThorn always shows its own onboarding flow until the user dismisses
++    // it; the pref is set back to false on dismissal.
++    let welcomeURL = Services.prefs.getBoolPref("onyxthorn.welcome.completed", false)
++      ? Services.prefs.getStringPref("startup.homepage_override_url")
++      : "chrome://onyxthorn/content/welcome/welcome.html";
+
+     if (welcomeURL) {
+       win.openTrustedLinkIn(welcomeURL, "tab");

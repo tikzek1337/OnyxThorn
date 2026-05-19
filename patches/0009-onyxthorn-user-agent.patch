@@ -1,0 +1,28 @@
+# HG changeset patch
+# User OnyxThorn <build@onyxthorn.example>
+# Date 1737000008 0
+#      OnyxThorn 0.1.0 - rebrand the user-agent string
+
+Replace "Firefox" / "Mozilla" UA tokens with "OnyxThorn" (keeping
+Gecko/rv: for compatibility). This is the only C++ patch in the series.
+
+diff --git a/netwerk/protocol/http/nsHttpHandler.cpp b/netwerk/protocol/http/nsHttpHandler.cpp
+--- a/netwerk/protocol/http/nsHttpHandler.cpp
++++ b/netwerk/protocol/http/nsHttpHandler.cpp
+@@ -640,7 +640,7 @@ nsresult nsHttpHandler::BuildUserAgent() {
+   mUserAgent.AppendLiteral(" Gecko/");
+   mUserAgent.Append(mProductSub);
+   mUserAgent.Append(' ');
+-  mUserAgent.AppendLiteral("Firefox/");
++  mUserAgent.AppendLiteral("OnyxThorn/");
+   mUserAgent.Append(mProductVersion);
+   if (mAppName.IsEmpty()) {
+     return NS_OK;
+@@ -660,7 +660,7 @@ void nsHttpHandler::PrefsChanged(const char* pref) {
+   // ResetUACache();
+   nsAutoCString uaPref;
+   if (NS_FAILED(Preferences::GetCString("general.useragent.override", uaPref))) {
+-    uaPref.AssignLiteral("Mozilla/5.0");
++    uaPref.AssignLiteral("OnyxThorn/0.1.0");
+   }
+ }

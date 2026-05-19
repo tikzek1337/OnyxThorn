@@ -1,0 +1,38 @@
+# OnyxThorn chrome JAR manifest.
+#
+# Installed into Firefox source tree at `browser/components/onyxthorn/jar.mn`
+# by `scripts/apply-patches.sh`. Registers chrome:// URLs for our pages.
+
+onyxthorn.jar:
+% content onyxthorn %content/
+% skin onyxthorn classic/1.0 %skin/
+% locale onyxthorn en-US %locale/en-US/
+% locale onyxthorn ru    %locale/ru/
+
+  content/welcome/welcome.html       (content/welcome/welcome.html)
+  content/welcome/welcome.css        (content/welcome/welcome.css)
+  content/welcome/welcome.js         (content/welcome/welcome.js)
+
+  content/preferences/preferences.html (content/preferences/preferences.html)
+  content/preferences/preferences.css  (content/preferences/preferences.css)
+  content/preferences/preferences.js   (content/preferences/preferences.js)
+
+  content/home/home.html             (content/home/home.html)
+  content/home/home.css              (content/home/home.css)
+  content/home/home.js               (content/home/home.js)
+
+  content/download/download.html     (content/download/download.html)
+  content/download/download.css      (content/download/download.css)
+  content/download/download.js       (content/download/download.js)
+
+  content/menu/panel.xhtml           (content/menu/panel.xhtml)
+  content/menu/panel.css             (content/menu/panel.css)
+  content/menu/panel.js              (content/menu/panel.js)
+
+  content/bridge.js                  (content/bridge.js)
+
+  skin/userChrome.css                (skin/userChrome.css)
+  skin/userContent.css               (skin/userContent.css)
+
+  locale/en-US/onyxthorn.ftl         (locale/en-US/onyxthorn.ftl)
+  locale/ru/onyxthorn.ftl            (locale/ru/onyxthorn.ftl)
